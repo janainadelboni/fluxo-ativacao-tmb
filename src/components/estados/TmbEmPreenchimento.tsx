@@ -48,10 +48,6 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar }: Props) {
         </label>
       </div>
 
-      <div className="alert alert-warning">
-        Atencao: a taxa da Eduzz incide sobre todas as parcelas da venda, nao apenas na primeira. Certifique-se disso antes de confirmar.
-      </div>
-
       <div className="btn-row">
         <button className="btn btn-secondary" onClick={onCancelar}>Cancelar</button>
         <button

@@ -76,7 +76,7 @@ export function TmbDropdownCard({ status, setStatus, showCheckout, onToggleCheck
                 </span>
               </div>
               <p className="tmb-desc">
-                Parcelamento via boleto com analise de credito — produtos acima de R$1.000
+                Parcelamento via boleto com analise de credito pela TMB
               </p>
             </div>
           </div>

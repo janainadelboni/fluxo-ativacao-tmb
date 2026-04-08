@@ -11,24 +11,28 @@ export function TmbAguardando({ onAtivo, onErro }: Props) {
       </div>
 
       <div className="step">
-        <div className="step-circle step-circle-done">&#10003;</div>
+        <div className="step-circle step-circle-waiting">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 2"/>
+          </svg>
+        </div>
         <div>
           <div className="step-title">Cadastro do produtor enviado</div>
-          <div className="step-desc">Aguardando TMB retornar o ID do produtor via webhook</div>
+          <div className="step-desc">Dados enviados. Aguardando aprovacao da TMB.</div>
         </div>
       </div>
 
       <div className="step">
         <div className="step-circle step-circle-pending">2</div>
         <div>
-          <div className="step-title">Ativacao neste produto</div>
-          <div className="step-desc">Disponivel assim que o cadastro for confirmado</div>
+          <div className="step-title">Ativar funcionalidade</div>
+          <div className="step-desc">Apos a aprovacao, a TMB sera ativada automaticamente no checkout deste produto</div>
         </div>
       </div>
 
       <div className="btn-row" style={{ gap: 8 }}>
         <button className="btn btn-secondary" onClick={onErro}>Simular erro</button>
-        <button className="btn btn-primary" onClick={onAtivo}>Simular ativacao</button>
+        <button className="btn btn-primary" onClick={onAtivo}>Simular aprovacao</button>
       </div>
     </div>
   )

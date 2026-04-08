@@ -97,11 +97,9 @@ body {
 .payment-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
 .payment-info p { font-size: 13px; color: #64748b; line-height: 1.4; }
 
-/* TMB nested under boleto */
-.tmb-nested {
-  margin-left: 52px; padding: 8px 0 12px;
-}
-.tmb-nested .subsection-title { margin-bottom: 8px; }
+/* TMB independent section */
+.tmb-section { padding: 8px 0 0; }
+.tmb-section .subsection-title { margin-bottom: 8px; }
 
 /* Link */
 .link { color: #3b82f6; text-decoration: none; }
@@ -236,6 +234,7 @@ body {
   font-size: 12px; font-weight: 600; flex-shrink: 0;
 }
 .step-circle-pending { background: #e2e8f0; color: #64748b; }
+.step-circle-waiting { background: #dbeafe; color: #2563eb; }
 .step-circle-done { background: #22c55e; color: #fff; }
 .step-circle-error { background: #ef4444; color: #fff; }
 .step-title { font-size: 14px; font-weight: 500; }

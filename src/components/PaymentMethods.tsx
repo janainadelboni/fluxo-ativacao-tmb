@@ -29,17 +29,6 @@ export function PaymentMethods({ tmbStatus, setTmbStatus, showCheckout, onToggle
         </div>
       </div>
 
-      {/* Boleto parcelado TMB — associado ao boleto */}
-      <div className="tmb-nested">
-        <h4 className="subsection-title">Boleto parcelado</h4>
-        <TmbDropdownCard
-          status={tmbStatus}
-          setStatus={setTmbStatus}
-          showCheckout={showCheckout}
-          onToggleCheckout={onToggleCheckout}
-        />
-      </div>
-
       <div className="divider" />
 
       <div className="payment-row">
@@ -107,6 +96,19 @@ export function PaymentMethods({ tmbStatus, setTmbStatus, showCheckout, onToggle
             <p>As parcelas no checkout irao aparecer sem os juros. Nesse caso o produtor assume os juros no lugar do comprador. <a href="#" className="link">Saiba Mais</a></p>
           </div>
         </div>
+      </div>
+
+      <div className="divider" />
+
+      {/* Boleto parcelado TMB — secao independente */}
+      <div className="tmb-section">
+        <h4 className="subsection-title">Boleto parcelado</h4>
+        <TmbDropdownCard
+          status={tmbStatus}
+          setStatus={setTmbStatus}
+          showCheckout={showCheckout}
+          onToggleCheckout={onToggleCheckout}
+        />
       </div>
     </>
   )
