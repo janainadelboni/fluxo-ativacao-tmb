@@ -1,9 +1,9 @@
 interface Props {
-  onAtivo: () => void
+  onAprovado: () => void
   onErro: () => void
 }
 
-export function TmbAguardando({ onAtivo, onErro }: Props) {
+export function TmbAguardando({ onAprovado, onErro }: Props) {
   return (
     <div className="estado-panel">
       <div className="alert alert-info">
@@ -40,7 +40,7 @@ export function TmbAguardando({ onAtivo, onErro }: Props) {
 
       <div className="btn-row" style={{ gap: 8 }}>
         <button className="btn btn-secondary" onClick={onErro}>Simular erro</button>
-        <button className="btn btn-primary" onClick={onAtivo}>Simular aprovacao</button>
+        <button className="btn btn-primary" onClick={onAprovado}>Simular aprovacao</button>
       </div>
     </div>
   )

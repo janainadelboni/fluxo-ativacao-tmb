@@ -5,7 +5,7 @@ import { ProductHeader } from './components/ProductHeader'
 import { PaymentMethods } from './components/PaymentMethods'
 import './styles/global.css'
 
-export type TmbStatus = 'nao-configurado' | 'em-preenchimento' | 'aguardando' | 'ativo' | 'erro'
+export type TmbStatus = 'nao-configurado' | 'em-preenchimento' | 'aguardando' | 'aprovado' | 'ativo' | 'erro'
 
 export default function App() {
   const [status, setStatus] = useState<TmbStatus>('nao-configurado')

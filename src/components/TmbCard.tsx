@@ -4,6 +4,7 @@ const statusLabels: Record<TmbStatus, string> = {
   'nao-configurado': 'Nao configurado',
   'em-preenchimento': 'Em preenchimento',
   'aguardando': 'Aguardando TMB',
+  'aprovado': 'Ativando',
   'ativo': 'Ativo',
   'erro': 'Erro no cadastro',
 }
