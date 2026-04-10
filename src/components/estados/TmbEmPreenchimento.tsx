@@ -14,10 +14,10 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar }: Props) {
 
   return (
     <div className="estado-panel">
-      <p className="form-step-label">Etapa 1 de 2 — Dados do representante legal</p>
+      <p className="form-step-label">Dados do representante legal da conta</p>
 
       <div className="form-group">
-        <label className="form-label">Nome completo do representante legal</label>
+        <label className="form-label">Nome do representante legal da conta</label>
         <input
           className="form-input"
           value={nome}
@@ -27,7 +27,7 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar }: Props) {
       </div>
 
       <div className="form-group">
-        <label className="form-label">CPF do representante</label>
+        <label className="form-label">CPF do representante legal</label>
         <input
           className="form-input"
           value={cpf}

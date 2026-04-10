@@ -8,9 +8,9 @@ body {
 }
 
 /* Layout */
-.layout { display: flex; min-height: 100vh; }
-.main { flex: 1; display: flex; flex-direction: column; }
-.content { padding: 16px 32px 100px; max-width: 1100px; }
+.layout { display: flex; min-height: 100vh; overflow-x: hidden; }
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.content { padding: 16px 32px 100px; max-width: 1100px; width: 100%; }
 
 /* Sidebar */
 .sidebar {
@@ -214,6 +214,9 @@ body {
   background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
   padding: 20px;
 }
+.estado-hint {
+  font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 12px;
+}
 
 /* Alert boxes */
 .alert {
@@ -308,3 +311,83 @@ body {
 }
 .debug-btn:hover { border-color: #3b82f6; color: #fff; }
 .debug-btn-active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+  /* Layout: hide sidebar, full width */
+  .sidebar { display: none; }
+  .content { padding: 12px 12px 120px; max-width: 100%; }
+
+  /* Header */
+  .header { padding: 0 12px; }
+  .search-box { width: auto; flex: 1; min-width: 0; }
+
+  /* Product header */
+  .product-title { font-size: 17px; word-break: break-word; }
+  .breadcrumb { font-size: 12px; }
+
+  /* Tabs: horizontal scroll */
+  .tab-bar {
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    gap: 16px; padding-bottom: 0; scrollbar-width: none;
+    margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab { font-size: 13px; }
+
+  /* Alert top */
+  .alert-info-top { font-size: 12px; padding: 10px 12px; }
+
+  /* Card section */
+  .card-section { padding: 14px; border-radius: 10px; }
+  .section-title { font-size: 14px; }
+
+  /* Payment rows */
+  .payment-info h4 { font-size: 13px; }
+  .payment-info p { font-size: 12px; }
+
+  /* Fatura */
+  .fatura-label { font-size: 13px; }
+  .fatura-hint { font-size: 12px; }
+
+  /* TMB dropdown header */
+  .tmb-dropdown-header { padding: 12px; gap: 8px; }
+  .tmb-dropdown-left { gap: 8px; min-width: 0; }
+  .tmb-logo { width: 32px; height: 32px; font-size: 9px; }
+  .tmb-info { min-width: 0; }
+  .tmb-info-top { flex-wrap: wrap; gap: 4px; }
+  .tmb-info-top h4 { font-size: 13px; }
+  .tmb-desc { font-size: 11px; overflow: hidden; text-overflow: ellipsis; }
+  .tmb-header-actions { gap: 8px; }
+  .tmb-dropdown-header-btn { min-width: 0; }
+
+  /* Estado panel */
+  .estado-panel { padding: 14px; }
+  .alert { font-size: 12px; padding: 10px 12px; word-break: break-word; }
+
+  /* Steps */
+  .step { gap: 10px; }
+  .step-circle { width: 24px; height: 24px; font-size: 11px; }
+  .step-title { font-size: 13px; }
+  .step-desc { font-size: 12px; }
+
+  /* Form */
+  .form-input { font-size: 16px; height: 42px; }
+  .form-step-label { font-size: 11px; }
+  .checkbox-row { padding: 10px 12px; }
+  .checkbox-row label { font-size: 12px; }
+
+  /* Buttons */
+  .btn-row { flex-direction: column; }
+  .btn-row .btn { width: 100%; text-align: center; padding: 10px 16px; }
+
+  /* Save bar */
+  .save-bar { padding-bottom: 20px; }
+
+  /* Debug bar: wrap */
+  .debug-bar {
+    flex-wrap: wrap; padding: 8px 12px; gap: 4px;
+  }
+  .debug-label { width: 100%; margin-bottom: 2px; font-size: 11px; }
+  .debug-btn { font-size: 10px; padding: 4px 6px; }
+}
