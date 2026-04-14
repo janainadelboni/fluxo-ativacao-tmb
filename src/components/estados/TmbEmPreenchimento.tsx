@@ -44,7 +44,7 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar }: Props) {
           onChange={e => setAceite(e.target.checked)}
         />
         <label htmlFor="aceite">
-          Li e aceito o contrato de parceria com a TMB e autorizo o compartilhamento dos dados.
+          Li e aceito o <a href="#" className="link" onClick={e => e.stopPropagation()}>contrato de parceria com a TMB</a> e autorizo o compartilhamento dos dados.
         </label>
       </div>
 
