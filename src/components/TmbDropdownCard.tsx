@@ -36,13 +36,14 @@ export function TmbDropdownCard({ status, setStatus, showCheckout, onToggleCheck
         return (
           <TmbEmPreenchimento
             onCancelar={() => setStatus('nao-configurado')}
-            onConfirmar={() => setStatus('aguardando')}
+            onConfirmar={() => setStatus('ativo')}
+            onDemorou={() => setStatus('aguardando')}
           />
         )
       case 'aguardando':
         return (
           <TmbAguardando
-            onAprovado={() => setStatus('aprovado')}
+            onAprovado={() => setStatus('ativo')}
             onErro={() => setStatus('erro')}
           />
         )

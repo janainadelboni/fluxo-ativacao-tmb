@@ -17,21 +17,13 @@ export function TmbNaoConfigurado({ onIniciar }: { onIniciar: () => void }) {
       <div className="step">
         <div className="step-circle step-circle-pending">2</div>
         <div>
-          <div className="step-title">Aguardar aprovacao da TMB</div>
-          <div className="step-desc">Voce sera notificado quando sua conta for aprovada</div>
-        </div>
-      </div>
-
-      <div className="step">
-        <div className="step-circle step-circle-pending">3</div>
-        <div>
-          <div className="step-title">Boleto parcelado habilitado</div>
-          <div className="step-desc">Apos aprovacao, sera ativado automaticamente neste produto e disponivel para qualquer produto elegivel</div>
+          <div className="step-title">Aprovacao e ativacao</div>
+          <div className="step-desc">A TMB aprova sua conta e o boleto parcelado e habilitado automaticamente neste produto</div>
         </div>
       </div>
 
       <p className="estado-hint">
-        Esse processo acontece apenas uma vez.
+        Esse processo acontece apenas uma vez. Apos a ativacao, voce podera habilitar em qualquer produto elegivel.
       </p>
 
       <div className="btn-row">
