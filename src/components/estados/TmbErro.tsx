@@ -6,7 +6,7 @@ export function TmbErro({ onCorrigir }: Props) {
   return (
     <div className="estado-panel">
       <div className="alert alert-error">
-        Falha no cadastro: CPF do representante nao corresponde ao CNPJ cadastrado na Receita Federal. Verifique os dados e tente novamente.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </div>
 
       <div className="step">
