@@ -206,7 +206,6 @@ body {
 .badge-status-nao-configurado { background: #f1f5f9; color: #64748b; }
 .badge-status-em-preenchimento { background: #fef3c7; color: #92400e; }
 .badge-status-aguardando { background: #dbeafe; color: #1e40af; }
-.badge-status-aprovado { background: #dbeafe; color: #1e40af; }
 .badge-status-ativo { background: #dcfce7; color: #166534; }
 .badge-status-erro { background: #fee2e2; color: #991b1b; }
 
@@ -267,7 +266,9 @@ body {
 /* Steps */
 .step {
   display: flex; gap: 14px; padding: 14px 0;
+  align-items: flex-start;
 }
+.step-content { flex: 1; min-width: 0; }
 .step-circle {
   width: 26px; height: 26px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -276,8 +277,11 @@ body {
 .step-circle-pending { background: #e2e8f0; color: #64748b; }
 .step-circle-waiting { background: #dbeafe; color: #2563eb; }
 .step-circle-done { background: #22c55e; color: #fff; }
-.step-circle-error { background: #ef4444; color: #fff; }
-.step-title { font-size: 14px; font-weight: 500; }
+.step-circle-error {
+  background: #ef4444; color: #fff;
+  font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 700;
+}
+.step-title { font-size: 14px; font-weight: 600; color: #1e293b; }
 .step-desc { font-size: 13px; color: #64748b; margin-top: 2px; }
 
 /* Form */
@@ -309,21 +313,36 @@ body {
 
 /* File upload */
 .file-upload { position: relative; }
-.file-upload input[type="file"] {
-  position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;
-}
 .file-upload-label {
   display: inline-flex; align-items: center; justify-content: center;
   width: 100%; min-height: 38px; padding: 8px 12px;
   border: 1px dashed #cbd5e1; border-radius: 6px; background: #f8fafc;
   font-size: 13px; color: #475569; cursor: pointer; transition: border-color 0.15s, background 0.15s;
+  font-family: inherit;
 }
 .file-upload-label:hover { border-color: #3b82f6; background: #eff6ff; color: #1e40af; }
+.file-upload-selected {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 8px 12px;
+  border: 1px solid #cbd5e1; border-radius: 6px; background: #f8fafc;
+  min-height: 38px;
+}
+.file-upload-name {
+  font-size: 13px; color: #1e293b; font-weight: 500;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.file-upload-actions { display: flex; gap: 12px; flex-shrink: 0; }
+.file-upload-link {
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-size: 13px; color: #3b82f6; font-family: inherit;
+}
+.file-upload-link:hover { text-decoration: underline; }
+.file-upload-link--danger { color: #dc2626; }
 
 /* Erro motivo */
 .erro-motivo {
   margin-top: 8px; padding: 10px 12px;
-  background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px;
+  background: transparent; border: 1px solid #fecaca; border-radius: 6px;
   font-size: 13px; color: #991b1b; line-height: 1.5;
 }
 
@@ -346,13 +365,15 @@ body {
 
 /* Buttons */
 .btn {
-  padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500;
+  padding: 8px 16px; border-radius: 0; font-size: 14px; font-weight: 500;
   cursor: pointer; border: none; transition: all 0.2s;
 }
 .btn-primary { background: #3b82f6; color: #fff; }
 .btn-primary:hover { background: #2563eb; }
-.btn-secondary { background: #fff; color: #475569; border: 1px solid #d1d5db; }
+.btn-secondary { background: #fff; color: #1e293b; border: 1px solid #d1d5db; }
 .btn-secondary:hover { background: #f8fafc; }
+.btn-ghost { background: transparent; color: #1e293b; border: none; }
+.btn-ghost:hover { background: #f1f5f9; }
 .btn-danger { background: #fff; color: #dc2626; border: 1px solid #fca5a5; }
 .btn-danger:hover { background: #fef2f2; }
 .btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
@@ -363,7 +384,7 @@ body {
 }
 .btn-save {
   display: flex; align-items: center; gap: 6px;
-  padding: 10px 24px; border-radius: 6px; font-size: 14px; font-weight: 500;
+  padding: 10px 24px; border-radius: 0; font-size: 14px; font-weight: 500;
   background: #f1f5f9; color: #94a3b8; border: 1px solid #e2e8f0;
   cursor: pointer; transition: all 0.2s;
 }
@@ -372,14 +393,15 @@ body {
 
 /* Debug bar */
 .debug-bar {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: #1e293b; color: #fff; padding: 10px 24px;
-  display: flex; align-items: center; gap: 8px; z-index: 100;
+  margin-top: 16px;
+  background: #1e293b; color: #fff; padding: 12px 16px;
+  border-radius: 8px;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
 }
 .debug-label { font-size: 12px; color: #94a3b8; margin-right: 8px; }
 .debug-btn {
-  font-size: 11px; padding: 4px 10px; border-radius: 4px;
-  border: 1px solid #475569; background: transparent; color: #94a3b8;
+  font-size: 12px; padding: 6px 12px; border-radius: 4px;
+  border: 1px solid #475569; background: transparent; color: #cbd5e1;
   cursor: pointer; transition: all 0.15s;
 }
 .debug-btn:hover { border-color: #3b82f6; color: #fff; }

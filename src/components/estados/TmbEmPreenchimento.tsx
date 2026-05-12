@@ -10,7 +10,7 @@ type Vinculo = '' | 'socio' | 'procurador'
 
 export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props) {
   const [vinculo, setVinculo] = useState<Vinculo>('')
-  const [procuracaoArquivo, setProcuracaoArquivo] = useState<File | null>(null)
+  const [procuracaoArquivo, setProcuracaoArquivo] = useState<string | null>(null)
   const [nome, setNome] = useState('')
   const [cpf, setCpf] = useState('')
   const [aceiteContrato, setAceiteContrato] = useState(false)
@@ -40,7 +40,7 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
       <div className="estado-panel">
         <div className="loading-overlay">
           <div className="loading-spinner" />
-          <p className="loading-text">Enviando dados e aguardando aprovacao da TMB...</p>
+          <p className="loading-text">Enviando dados e aguardando aprovação da TMB...</p>
           <p className="loading-hint">Isso pode levar alguns segundos</p>
         </div>
       </div>
@@ -50,10 +50,10 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
   return (
     <div className="estado-panel">
       <div className="alert alert-info">
-        <strong>Analise de credito pela TMB.</strong> Os dados preenchidos abaixo sao enviados para a TMB, parceira responsavel pela analise e aprovacao do seu cadastro de boleto parcelado. A Eduzz nao participa dessa decisao.
+        <strong>Análise de crédito pela TMB.</strong> Os dados preenchidos abaixo são enviados para a TMB, parceira responsável pela análise e aprovação do seu cadastro de boleto parcelado. A Eduzz não participa dessa decisão.
       </div>
 
-      <p className="form-step-label">Vinculo com a empresa</p>
+      <p className="form-step-label">Vínculo com a empresa</p>
 
       <div className="form-group">
         <label className="radio-row">
@@ -65,7 +65,7 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
             onChange={() => setVinculo('socio')}
           />
           <span>
-            <span className="radio-title">Sou socio da empresa</span>
+            <span className="radio-title">Sou sócio da empresa</span>
             <span className="radio-desc">Estou no contrato social da empresa.</span>
           </span>
         </label>
@@ -80,36 +80,53 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
           />
           <span>
             <span className="radio-title">Sou procurador da empresa</span>
-            <span className="radio-desc">Nao estou no contrato social. E obrigatorio anexar a procuracao.</span>
+            <span className="radio-desc">Não estou no contrato social. É obrigatório anexar a procuração.</span>
           </span>
         </label>
       </div>
 
       {vinculo === 'procurador' && (
         <div className="form-group">
-          <label className="form-label">Procuracao (obrigatorio)</label>
+          <label className="form-label">Procuração (obrigatório)</label>
           <div className="file-upload">
-            <input
-              type="file"
-              id="procuracao"
-              accept=".pdf,.jpg,.jpeg,.png"
-              onChange={e => setProcuracaoArquivo(e.target.files?.[0] ?? null)}
-            />
-            <label htmlFor="procuracao" className="file-upload-label">
-              {procuracaoArquivo ? procuracaoArquivo.name : 'Selecionar arquivo (PDF, JPG, PNG)'}
-            </label>
+            {procuracaoArquivo ? (
+              <div className="file-upload-selected">
+                <span className="file-upload-name">{procuracaoArquivo}</span>
+                <div className="file-upload-actions">
+                  <button
+                    type="button"
+                    className="file-upload-link file-upload-link--danger"
+                    onClick={() => setProcuracaoArquivo(null)}
+                  >
+                    Remover
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="file-upload-label"
+                onClick={() => setProcuracaoArquivo('procuracao.pdf')}
+              >
+                Selecionar arquivo (PDF, JPG, PNG)
+              </button>
+            )}
           </div>
-          <p className="form-hint">A TMB e responsavel pela verificacao do documento anexado.</p>
+          <p className="form-hint">A TMB é responsável pela verificação do documento anexado.</p>
         </div>
       )}
 
       {vinculo !== '' && (
         <>
           <div className="divider" />
-          <p className="form-step-label">Dados do representante legal da conta</p>
+          <p className="form-step-label">
+            {vinculo === 'procurador' ? 'Dados do procurador da empresa' : 'Dados do representante legal da conta'}
+          </p>
 
           <div className="form-group">
-            <label className="form-label">Nome completo do representante legal</label>
+            <label className="form-label">
+              {vinculo === 'procurador' ? 'Nome completo do procurador' : 'Nome completo do representante legal'}
+            </label>
             <input
               className="form-input"
               value={nome}
@@ -124,7 +141,9 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
           </div>
 
           <div className="form-group">
-            <label className="form-label">CPF do representante legal</label>
+            <label className="form-label">
+              {vinculo === 'procurador' ? 'CPF do procurador' : 'CPF do representante legal'}
+            </label>
             <input
               className="form-input"
               value={cpf}
@@ -141,7 +160,9 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
             <h4 className="contrato-titulo">Contrato de Parceria TMB e Eduzz</h4>
             <div className="contrato-dados">
               <div className="contrato-campo">
-                <span className="contrato-label">Representante legal:</span>
+                <span className="contrato-label">
+                  {vinculo === 'procurador' ? 'Procurador:' : 'Representante legal:'}
+                </span>
                 <span className="contrato-valor">{nome}</span>
               </div>
               <div className="contrato-campo">
@@ -149,13 +170,22 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
                 <span className="contrato-valor">{cpf}</span>
               </div>
               <div className="contrato-campo">
-                <span className="contrato-label">Vinculo:</span>
-                <span className="contrato-valor">{vinculo === 'socio' ? 'Socio' : 'Procurador'}</span>
+                <span className="contrato-label">Vínculo:</span>
+                <span className="contrato-valor">{vinculo === 'socio' ? 'Sócio' : 'Procurador'}</span>
               </div>
             </div>
             <div className="contrato-corpo">
-              <p>Pelo presente instrumento, o produtor acima identificado firma contrato com a TMB Educacao e a Eduzz para disponibilizacao do boleto parcelado como meio de pagamento em seus produtos comercializados na plataforma Eduzz.</p>
-              <p>O produtor autoriza o compartilhamento dos dados cadastrais com a TMB para fins de analise de credito e habilitacao da funcionalidade de parcelamento via boleto.</p>
+              {vinculo === 'procurador' ? (
+                <>
+                  <p>Pelo presente instrumento, o procurador acima identificado, agindo em nome do produtor e amparado pela procuração anexada, firma contrato com a TMB Educação e a Eduzz para disponibilização do boleto parcelado como meio de pagamento nos produtos comercializados na plataforma Eduzz.</p>
+                  <p>O procurador autoriza, em nome do produtor, o compartilhamento dos dados cadastrais com a TMB para fins de análise de crédito e habilitação da funcionalidade de parcelamento via boleto.</p>
+                </>
+              ) : (
+                <>
+                  <p>Pelo presente instrumento, o produtor acima identificado firma contrato com a TMB Educação e a Eduzz para disponibilização do boleto parcelado como meio de pagamento em seus produtos comercializados na plataforma Eduzz.</p>
+                  <p>O produtor autoriza o compartilhamento dos dados cadastrais com a TMB para fins de análise de crédito e habilitação da funcionalidade de parcelamento via boleto.</p>
+                </>
+              )}
             </div>
             <a href="#" className="link contrato-download" onClick={e => e.preventDefault()}>Baixar contrato completo (PDF)</a>
           </div>
@@ -168,7 +198,11 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
               onChange={e => setAceiteContrato(e.target.checked)}
             />
             <label htmlFor="aceiteContrato">
-              Li e aceito o contrato de parceria com a <strong>TMB e Eduzz</strong> e autorizo o compartilhamento dos dados.
+              {vinculo === 'procurador' ? (
+                <>Li e aceito o contrato de parceria com a <strong>TMB e Eduzz</strong> e autorizo, em nome do produtor, o compartilhamento dos dados.</>
+              ) : (
+                <>Li e aceito o contrato de parceria com a <strong>TMB e Eduzz</strong> e autorizo o compartilhamento dos dados.</>
+              )}
             </label>
           </div>
 
@@ -180,7 +214,9 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
               onChange={e => setAceiteVeracidade(e.target.checked)}
             />
             <label htmlFor="aceiteVeracidade">
-              Declaro veracidade nas informacoes descritas (Nome e CPF) e ser o responsavel legal pela empresa.
+              {vinculo === 'procurador'
+                ? 'Declaro veracidade nas informações descritas (Nome e CPF) e ser procurador legalmente habilitado a representar a empresa, conforme procuração anexada.'
+                : 'Declaro veracidade nas informações descritas (Nome e CPF) e ser o responsável legal pela empresa.'}
             </label>
           </div>
         </>
@@ -194,7 +230,7 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou }: Props
           onClick={handleConfirmar}
           style={!canSubmit ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
         >
-          Confirmar e enviar para analise da TMB
+          Confirmar e enviar para análise da TMB
         </button>
       </div>
     </div>

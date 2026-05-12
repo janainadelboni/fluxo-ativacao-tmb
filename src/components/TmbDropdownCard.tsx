@@ -3,15 +3,13 @@ import type { TmbStatus } from '../App'
 import { TmbNaoConfigurado } from './estados/TmbNaoConfigurado'
 import { TmbEmPreenchimento } from './estados/TmbEmPreenchimento'
 import { TmbAguardando } from './estados/TmbAguardando'
-import { TmbAprovado } from './estados/TmbAprovado'
 import { TmbAtivo } from './estados/TmbAtivo'
 import { TmbErro } from './estados/TmbErro'
 
 const statusLabels: Record<TmbStatus, string> = {
-  'nao-configurado': 'Nao configurado',
+  'nao-configurado': 'Não configurado',
   'em-preenchimento': 'Em preenchimento',
   'aguardando': 'Aguardando TMB',
-  'aprovado': 'Ativando',
   'ativo': 'Ativo',
   'erro': 'Erro no cadastro',
 }
@@ -47,12 +45,6 @@ export function TmbDropdownCard({ status, setStatus, showCheckout, onToggleCheck
             onErro={() => setStatus('erro')}
           />
         )
-      case 'aprovado':
-        return (
-          <TmbAprovado
-            onAtivo={() => setStatus('ativo')}
-          />
-        )
       case 'ativo':
         return (
           <TmbAtivo
@@ -85,7 +77,7 @@ export function TmbDropdownCard({ status, setStatus, showCheckout, onToggleCheck
                 </span>
               </div>
               <p className="tmb-desc">
-                Parcelamento via boleto com analise de credito pela TMB
+                Parcelamento via boleto com análise de crédito pela TMB
               </p>
             </div>
           </div>
