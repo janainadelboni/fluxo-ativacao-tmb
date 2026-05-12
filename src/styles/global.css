@@ -289,7 +289,43 @@ body {
 }
 .form-input:focus { border-color: #3b82f6; }
 
-.form-step-label { font-size: 12px; color: #64748b; margin-bottom: 12px; }
+.form-step-label { font-size: 12px; color: #64748b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; }
+
+.form-hint { font-size: 12px; color: #64748b; margin-top: 4px; line-height: 1.4; }
+.form-hint-warn { color: #92400e; }
+
+/* Radio rows */
+.radio-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+  padding: 12px 14px; margin-bottom: 8px; cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.radio-row:hover { border-color: #cbd5e1; }
+.radio-row input[type="radio"] { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; }
+.radio-row > span { display: flex; flex-direction: column; gap: 2px; }
+.radio-title { font-size: 13px; font-weight: 500; color: #1e293b; }
+.radio-desc { font-size: 12px; color: #64748b; line-height: 1.4; }
+
+/* File upload */
+.file-upload { position: relative; }
+.file-upload input[type="file"] {
+  position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;
+}
+.file-upload-label {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 38px; padding: 8px 12px;
+  border: 1px dashed #cbd5e1; border-radius: 6px; background: #f8fafc;
+  font-size: 13px; color: #475569; cursor: pointer; transition: border-color 0.15s, background 0.15s;
+}
+.file-upload-label:hover { border-color: #3b82f6; background: #eff6ff; color: #1e40af; }
+
+/* Erro motivo */
+.erro-motivo {
+  margin-top: 8px; padding: 10px 12px;
+  background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px;
+  font-size: 13px; color: #991b1b; line-height: 1.5;
+}
 
 .checkbox-row {
   display: flex; align-items: flex-start; gap: 10px;

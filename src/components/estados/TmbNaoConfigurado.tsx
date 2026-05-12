@@ -17,8 +17,16 @@ export function TmbNaoConfigurado({ onIniciar }: { onIniciar: () => void }) {
       <div className="step">
         <div className="step-circle step-circle-pending">2</div>
         <div>
+          <div className="step-title">Analise de credito pela TMB</div>
+          <div className="step-desc">A TMB e responsavel pela analise de credito e pela aprovacao do cadastro. A Eduzz nao participa dessa decisao.</div>
+        </div>
+      </div>
+
+      <div className="step">
+        <div className="step-circle step-circle-pending">3</div>
+        <div>
           <div className="step-title">Aprovacao e ativacao</div>
-          <div className="step-desc">A TMB aprova sua conta e o boleto parcelado e habilitado automaticamente neste produto</div>
+          <div className="step-desc">Apos aprovacao da TMB, o boleto parcelado e habilitado automaticamente neste produto.</div>
         </div>
       </div>
 
