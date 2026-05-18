@@ -9,6 +9,7 @@ export default function App() {
   const [showCheckout, setShowCheckout] = useState(true)
 
   return (
+    <>
     <div className="layout">
       <div className="main">
         <div className="content">
@@ -23,21 +24,31 @@ export default function App() {
               />
             </div>
           </div>
-
-          <div className="debug-bar">
-            <span className="debug-label">Simular estado:</span>
-            {(['nao-configurado', 'em-preenchimento', 'aguardando', 'ativo', 'erro'] as TmbStatus[]).map(s => (
-              <button
-                key={s}
-                className={`debug-btn ${status === s ? 'debug-btn-active' : ''}`}
-                onClick={() => setStatus(s)}
-              >
-                {s}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
     </div>
+
+    {/* ============================================================ */}
+    {/* Controles de demo — NÃO FAZEM PARTE DA INTERFACE              */}
+    {/* Apenas para simular estados durante a apresentação/handoff.    */}
+    {/* ============================================================ */}
+    <div className="demo-controls" aria-hidden>
+      <span className="demo-controls-label">
+        ⚙️ Controles de demo — não fazem parte da interface
+      </span>
+      <div className="demo-controls-row">
+        <span className="demo-controls-sublabel">Simular estado:</span>
+        {(['nao-configurado', 'em-preenchimento', 'aguardando', 'ativo', 'erro'] as TmbStatus[]).map(s => (
+          <button
+            key={s}
+            className={`demo-controls-btn ${status === s ? 'demo-controls-btn-active' : ''}`}
+            onClick={() => setStatus(s)}
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+    </div>
+    </>
   )
 }
