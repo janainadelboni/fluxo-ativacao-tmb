@@ -14,7 +14,7 @@ export function TmbAguardando({ onAprovado, onErro }: Props) {
         Você pode sair desta página. Quando a TMB concluir a aprovação, o boleto parcelado será habilitado automaticamente e você será notificado.
       </p>
 
-      <div className="btn-row" style={{ gap: 8 }}>
+      <div className="btn-row">
         <button className="btn btn-secondary" onClick={onErro}>Simular erro</button>
         <button className="btn btn-primary" onClick={onAprovado}>Simular aprovação</button>
       </div>

@@ -217,6 +217,9 @@ body {
 .estado-hint {
   font-size: 13px; color: #64748b; line-height: 1.5; margin-bottom: 12px;
 }
+.estado-intro {
+  font-size: 13px; color: #475569; margin-bottom: 12px;
+}
 
 /* Contrato preview */
 .contrato-preview {
@@ -339,6 +342,89 @@ body {
 .file-upload-link:hover { text-decoration: underline; }
 .file-upload-link--danger { color: #dc2626; }
 
+/* Form step header row (title + tag side by side) */
+.form-step-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 12px;
+}
+.form-step-row .form-step-label { margin-bottom: 0; }
+
+/* Cadastro 360 callout */
+.cadastro360-callout {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.cadastro360-callout--info {
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+}
+.cadastro360-callout--warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+}
+.cadastro360-callout-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  color: #fff;
+}
+.cadastro360-callout--info .cadastro360-callout-icon { background: #7c3aed; }
+.cadastro360-callout--warning .cadastro360-callout-icon { background: #d97706; }
+.cadastro360-callout-body { min-width: 0; }
+.cadastro360-callout-title {
+  font-size: 13px; font-weight: 600; color: #1e293b; margin-bottom: 2px;
+}
+.cadastro360-callout-text {
+  font-size: 12px; color: #475569; line-height: 1.5;
+}
+.cadastro360-callout-action {
+  display: flex; align-items: flex-start; flex-shrink: 0;
+}
+.cadastro360-callout-action .link-button {
+  font-size: 13px;
+}
+
+/* Link button (button styled as link) */
+.link-button {
+  background: none; border: none; padding: 0;
+  font-family: inherit; cursor: pointer; color: #3b82f6;
+}
+.link-button:hover { text-decoration: underline; }
+
+/* Cadastro 360 readonly summary */
+.cadastro360-summary {
+  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+  padding: 4px 0; margin-bottom: 16px;
+}
+.cadastro360-summary-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eef2f6;
+  gap: 12px;
+}
+.cadastro360-summary-row:last-child { border-bottom: none; }
+.cadastro360-summary-label {
+  font-size: 12px; color: #64748b; font-weight: 500;
+}
+.cadastro360-summary-value {
+  font-size: 13px; color: #1e293b; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 8px;
+  text-align: right;
+}
+.cadastro360-tag {
+  font-size: 10px; font-weight: 600;
+  background: #ede9fe; color: #5b21b6;
+  border: 1px solid #ddd6fe;
+  padding: 2px 6px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
 /* Erro motivo */
 .erro-motivo {
   margin-top: 8px; padding: 10px 12px;
@@ -376,6 +462,8 @@ body {
 .btn-ghost:hover { background: #f1f5f9; }
 .btn-danger { background: #fff; color: #dc2626; border: 1px solid #fca5a5; }
 .btn-danger:hover { background: #fef2f2; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn:disabled:hover { background: inherit; }
 .btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
 
 /* Save bar */
@@ -437,75 +525,90 @@ body {
 
 /* ========== MOBILE ========== */
 @media (max-width: 768px) {
-  /* Layout: hide sidebar, full width */
-  .sidebar { display: none; }
-  .content { padding: 12px 12px 120px; max-width: 100%; }
-
-  /* Header */
-  .header { padding: 0 12px; }
-  .search-box { width: auto; flex: 1; min-width: 0; }
-
-  /* Product header */
-  .product-title { font-size: 17px; word-break: break-word; }
-  .breadcrumb { font-size: 12px; }
-
-  /* Tabs: horizontal scroll */
-  .tab-bar {
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-    gap: 16px; padding-bottom: 0; scrollbar-width: none;
-    margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px;
-  }
-  .tab-bar::-webkit-scrollbar { display: none; }
-  .tab { font-size: 13px; }
-
-  /* Alert top */
-  .alert-info-top { font-size: 12px; padding: 10px 12px; }
+  .content { padding: 12px; max-width: 100%; }
 
   /* Card section */
   .card-section { padding: 14px; border-radius: 10px; }
-  .section-title { font-size: 14px; }
-
-  /* Payment rows */
-  .payment-info h4 { font-size: 13px; }
-  .payment-info p { font-size: 12px; }
-
-  /* Fatura */
-  .fatura-label { font-size: 13px; }
-  .fatura-hint { font-size: 12px; }
+  .subsection-title { font-size: 13px; margin-bottom: 8px; }
 
   /* TMB dropdown header */
   .tmb-dropdown-header { padding: 12px; gap: 8px; }
-  .tmb-dropdown-left { gap: 8px; min-width: 0; }
-  .tmb-logo { width: 32px; height: 32px; font-size: 9px; }
+  .tmb-dropdown-left { gap: 10px; min-width: 0; }
+  .tmb-logo { width: 36px; height: 36px; font-size: 10px; flex-shrink: 0; }
   .tmb-info { min-width: 0; }
-  .tmb-info-top { flex-wrap: wrap; gap: 4px; }
+  .tmb-info-top { flex-wrap: wrap; gap: 6px; }
   .tmb-info-top h4 { font-size: 13px; }
-  .tmb-desc { font-size: 11px; overflow: hidden; text-overflow: ellipsis; }
-  .tmb-header-actions { gap: 8px; }
+  .tmb-desc { font-size: 12px; line-height: 1.4; }
+  .tmb-header-actions { gap: 8px; flex-shrink: 0; }
   .tmb-dropdown-header-btn { min-width: 0; }
+  .badge { font-size: 10px; padding: 2px 6px; }
 
   /* Estado panel */
   .estado-panel { padding: 14px; }
   .alert { font-size: 12px; padding: 10px 12px; word-break: break-word; }
 
   /* Steps */
-  .step { gap: 10px; }
+  .step { gap: 10px; padding: 10px 0; }
   .step-circle { width: 24px; height: 24px; font-size: 11px; }
   .step-title { font-size: 13px; }
   .step-desc { font-size: 12px; }
+  .erro-motivo { font-size: 12px; padding: 8px 10px; }
 
   /* Form */
   .form-input { font-size: 16px; height: 42px; }
+  .form-label { font-size: 13px; }
   .form-step-label { font-size: 11px; }
+  .form-hint { font-size: 12px; }
+
+  /* Radios */
+  .radio-row { padding: 10px 12px; }
+  .radio-title { font-size: 13px; }
+  .radio-desc { font-size: 12px; }
+
+  /* File upload */
+  .file-upload-label { font-size: 12px; min-height: 42px; padding: 10px 12px; }
+  .file-upload-selected { padding: 10px 12px; min-height: 42px; }
+  .file-upload-name { font-size: 12px; }
+
+  /* Checkbox rows */
   .checkbox-row { padding: 10px 12px; }
-  .checkbox-row label { font-size: 12px; }
+  .checkbox-row label { font-size: 12px; line-height: 1.45; }
 
-  /* Buttons */
-  .btn-row { flex-direction: column; }
-  .btn-row .btn { width: 100%; text-align: center; padding: 10px 16px; }
+  /* Contrato preview */
+  .contrato-preview { padding: 12px; }
+  .contrato-titulo { font-size: 13px; }
+  .contrato-dados { padding: 10px; }
+  .contrato-campo { flex-direction: column; gap: 2px; font-size: 12px; }
+  .contrato-label { font-size: 11px; }
+  .contrato-corpo { font-size: 11px; line-height: 1.55; }
 
-  /* Save bar */
-  .save-bar { padding-bottom: 20px; }
+  /* Loading */
+  .loading-overlay { padding: 28px 12px; }
+  .loading-text { font-size: 13px; }
+  .loading-hint { font-size: 12px; }
+
+  /* Cadastro 360 callout mobile */
+  .cadastro360-callout {
+    grid-template-columns: 24px 1fr;
+    gap: 10px; padding: 12px;
+  }
+  .cadastro360-callout-action {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+  .cadastro360-callout-title { font-size: 12px; }
+  .cadastro360-callout-text { font-size: 11px; }
+
+  /* Cadastro 360 summary mobile */
+  .cadastro360-summary-row {
+    flex-direction: column; align-items: flex-start; gap: 4px;
+    padding: 10px 12px;
+  }
+  .cadastro360-summary-value { text-align: left; }
+
+  /* Buttons: full width, stacked, primary on top */
+  .btn-row { flex-direction: column-reverse; gap: 8px; }
+  .btn-row .btn { width: 100%; text-align: center; padding: 12px 16px; }
 
   /* Demo controls: wrap */
   .demo-controls { padding: 16px 12px; }

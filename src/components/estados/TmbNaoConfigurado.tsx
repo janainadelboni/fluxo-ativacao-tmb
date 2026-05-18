@@ -1,16 +1,56 @@
-export function TmbNaoConfigurado({ onIniciar }: { onIniciar: () => void }) {
+import type { Cadastro360Status } from '../../App'
+
+interface Props {
+  onIniciar: () => void
+  cadastro360Status: Cadastro360Status
+}
+
+export function TmbNaoConfigurado({ onIniciar, cadastro360Status }: Props) {
+  const cadastro360Pendente = cadastro360Status === 'pendente'
+
   return (
     <div className="estado-panel">
-      <p style={{ fontSize: 13, color: '#475569', marginBottom: 12 }}>
+      <p className="estado-intro">
         Ofereça parcelamento via boleto com aprovação de crédito pela TMB.
         O comprador paga em parcelas mensais sem precisar de cartão de crédito.
       </p>
 
+      {cadastro360Pendente && (
+        <div className="cadastro360-callout cadastro360-callout--warning">
+          <div className="cadastro360-callout-icon" aria-hidden>!</div>
+          <div className="cadastro360-callout-body">
+            <div className="cadastro360-callout-title">Antes de ativar a TMB, complete o Cadastro 360</div>
+            <p className="cadastro360-callout-text">
+              O Cadastro 360 valida os dados do produtor — incluindo nome, CPF e biometria
+              do representante legal. Esses dados são reaproveitados aqui para agilizar a ativação.
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div className="step">
+        <div className={`step-circle ${cadastro360Pendente ? 'step-circle-waiting' : 'step-circle-done'}`}>
+          {cadastro360Pendente ? '!' : '✓'}
+        </div>
+        <div>
+          <div className="step-title">Completar o Cadastro 360 do produtor</div>
+          <div className="step-desc">
+            {cadastro360Pendente
+              ? 'Pendente. Necessário para validar nome, CPF e biometria do representante legal.'
+              : 'Concluído. Os dados do representante legal serão reaproveitados.'}
+          </div>
+        </div>
+      </div>
+
       <div className="step">
         <div className="step-circle step-circle-pending">1</div>
         <div>
-          <div className="step-title">Preencher dados do representante legal da conta</div>
-          <div className="step-desc">Informar nome e CPF do representante e aceitar o contrato de parceria</div>
+          <div className="step-title">Conferir os dados do representante legal</div>
+          <div className="step-desc">
+            {cadastro360Pendente
+              ? 'Após o Cadastro 360, os dados virão pré-preenchidos. Você só precisa conferir e aceitar o contrato.'
+              : 'Os dados virão do Cadastro 360. Você pode editá-los antes de enviar para a TMB.'}
+          </div>
         </div>
       </div>
 
@@ -35,7 +75,13 @@ export function TmbNaoConfigurado({ onIniciar }: { onIniciar: () => void }) {
       </p>
 
       <div className="btn-row">
-        <button className="btn btn-primary" onClick={onIniciar}>Iniciar cadastro</button>
+        {cadastro360Pendente ? (
+          <button className="btn btn-primary" onClick={() => alert('Direciona o produtor para o Cadastro 360')}>
+            Ir para o Cadastro 360
+          </button>
+        ) : (
+          <button className="btn btn-primary" onClick={onIniciar}>Iniciar cadastro</button>
+        )}
       </div>
     </div>
   )

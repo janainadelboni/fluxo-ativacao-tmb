@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { TmbStatus } from '../App'
+import type { TmbStatus, Cadastro360Status, Cadastro360Data } from '../App'
 import { TmbNaoConfigurado } from './estados/TmbNaoConfigurado'
 import { TmbEmPreenchimento } from './estados/TmbEmPreenchimento'
 import { TmbAguardando } from './estados/TmbAguardando'
@@ -19,9 +19,11 @@ interface Props {
   setStatus: (s: TmbStatus) => void
   showCheckout: boolean
   onToggleCheckout: () => void
+  cadastro360Status: Cadastro360Status
+  cadastro360Data: Cadastro360Data
 }
 
-export function TmbDropdownCard({ status, setStatus, showCheckout, onToggleCheckout }: Props) {
+export function TmbDropdownCard({ status, setStatus, showCheckout, onToggleCheckout, cadastro360Status, cadastro360Data }: Props) {
   const [open, setOpen] = useState(false)
 
   const isAtivo = status === 'ativo'
@@ -29,13 +31,20 @@ export function TmbDropdownCard({ status, setStatus, showCheckout, onToggleCheck
   const renderEstado = () => {
     switch (status) {
       case 'nao-configurado':
-        return <TmbNaoConfigurado onIniciar={() => setStatus('em-preenchimento')} />
+        return (
+          <TmbNaoConfigurado
+            onIniciar={() => setStatus('em-preenchimento')}
+            cadastro360Status={cadastro360Status}
+          />
+        )
       case 'em-preenchimento':
         return (
           <TmbEmPreenchimento
             onCancelar={() => setStatus('nao-configurado')}
             onConfirmar={() => setStatus('ativo')}
             onDemorou={() => setStatus('aguardando')}
+            cadastro360Status={cadastro360Status}
+            cadastro360Data={cadastro360Data}
           />
         )
       case 'aguardando':
