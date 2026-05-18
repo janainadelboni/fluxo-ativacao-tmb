@@ -23,12 +23,8 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou, cadastr
   const [loading, setLoading] = useState(false)
   const [editando, setEditando] = useState(false)
 
-  // Cadastro 360 só se aplica quando o usuário é sócio — o procurador
-  // é uma terceira pessoa que precisa informar seus próprios dados.
-  const usarCadastro360 = hasCadastro360 && vinculo === 'socio'
-
   const dadosVemDoCadastro360 =
-    usarCadastro360 &&
+    hasCadastro360 &&
     !editando &&
     nome === cadastro360Data.nome &&
     cpf === cadastro360Data.cpf
@@ -47,12 +43,7 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou, cadastr
 
   const handleSelecionarVinculo = (novoVinculo: Vinculo) => {
     setVinculo(novoVinculo)
-    if (novoVinculo === 'procurador') {
-      // Procurador é uma terceira pessoa: dados do Cadastro 360 não se aplicam.
-      setNome('')
-      setCpf('')
-      setEditando(false)
-    } else if (novoVinculo === 'socio' && hasCadastro360) {
+    if (hasCadastro360) {
       setNome(cadastro360Data.nome)
       setCpf(cadastro360Data.cpf)
       setEditando(false)
@@ -84,7 +75,7 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou, cadastr
     )
   }
 
-  const mostrarResumoCadastro360 = usarCadastro360 && !editando
+  const mostrarResumoCadastro360 = hasCadastro360 && !editando
 
   return (
     <div className="estado-panel">
@@ -163,12 +154,12 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou, cadastr
             <p className="form-step-label">
               {vinculo === 'procurador' ? 'Dados do procurador da empresa' : 'Dados do representante legal da conta'}
             </p>
-            {usarCadastro360 && (
+            {hasCadastro360 && (
               <span className="cadastro360-tag">Cadastro 360</span>
             )}
           </div>
 
-          {usarCadastro360 && (
+          {hasCadastro360 && (
             <div className="cadastro360-callout cadastro360-callout--info">
               <div className="cadastro360-callout-icon" aria-hidden>✓</div>
               <div className="cadastro360-callout-body">
@@ -196,11 +187,15 @@ export function TmbEmPreenchimento({ onCancelar, onConfirmar, onDemorou, cadastr
           {mostrarResumoCadastro360 ? (
             <div className="cadastro360-summary">
               <div className="cadastro360-summary-row">
-                <span className="cadastro360-summary-label">Nome completo do representante legal</span>
+                <span className="cadastro360-summary-label">
+                  {vinculo === 'procurador' ? 'Nome completo do procurador' : 'Nome completo do representante legal'}
+                </span>
                 <span className="cadastro360-summary-value">{cadastro360Data.nome}</span>
               </div>
               <div className="cadastro360-summary-row">
-                <span className="cadastro360-summary-label">CPF do representante legal</span>
+                <span className="cadastro360-summary-label">
+                  {vinculo === 'procurador' ? 'CPF do procurador' : 'CPF do representante legal'}
+                </span>
                 <span className="cadastro360-summary-value">{cadastro360Data.cpf}</span>
               </div>
             </div>
